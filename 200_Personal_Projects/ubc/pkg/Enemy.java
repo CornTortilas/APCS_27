@@ -10,8 +10,8 @@ public class Enemy{
 	}
 
     public void GenerateEnemy(){
-        for(Move move : this.Moves){
-            move = new Move(1.0,1);
+        for(Move thing : this.Moves){
+            thing = new Move(1.0,1);
         }
         this.id = 1; 
     }
