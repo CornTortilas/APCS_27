@@ -7,8 +7,10 @@ import java.util.Scanner;
 
 class starter {
 	public static void main(String args[]) {
-		// the string "I love to learn coding remotely." will appear in
-		// the command window when you compile and run this program.
-		System.out.print("I love to learn coding remotely."); 
+        Scanner input = new Scanner(System.in);
+        System.out.print("Input a number: ");
+		double farenheit = input.nextInt();
+        double celsius = (farenheit-32)*5/9;
+        System.out.println("Farenheit = " + farenheit + "\nCelsius = " + celsius);
 	}
 }

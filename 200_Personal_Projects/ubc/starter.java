@@ -3,17 +3,14 @@
  *  Date: 
 */
 
-import pkg.*;
-import java.util.Scanner;
-import java.util.Random;
+import pkg.Move;
 
 
 class starter {
 	public static void main(String args[]) {
-		// Your code goes below here
-		BaseClass test = new BaseClass();
-
-
+		Move m = new Move(1.0,0);
+		System.out.print("Working");
+		
 		
 	}
 }
