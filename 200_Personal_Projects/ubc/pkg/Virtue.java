@@ -18,7 +18,7 @@ public class Virtue {
         this.Affinities = Affinities;
 	}
 
-	public void AttackEnemy(Move move, Enemy enemy){
+	public void AttackEnemy(Move move, Virtue enemy){
 		System.out.println(Name + " attacked " + enemy.Name + " with " + move.Name);
 		enemy.HitByMove(move,this);	
 	}
@@ -30,5 +30,20 @@ public class Virtue {
 
 	public void PrintHealth(){
 		System.out.println("Max Health: " + MaxHealth + " Current Health: " + Health);
+	}
+
+	public void HitByMove(Move move, Virtue virtue){
+		if(Health == 0){
+			System.out.println(Name + " is already dead");
+			return;
+		}
+		Health -= move.FindDamage(virtue,this);
+		if(Health <= 0){
+			Health = 0;
+		}
+		System.out.println(Name + " was hit by " + move.Name + " and took " + move.FindDamage(virtue,this) + " Damage");
+		if(Health == 0){
+			System.out.println(Name + " died");
+		}
 	}
 }

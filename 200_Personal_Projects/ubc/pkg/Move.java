@@ -22,16 +22,22 @@ public class Move{
 		//this.Accuracy = Accuracy;
 	}
 
-	public double FindDamage(Virtue virtue, Enemy enemy){
+	public double FindDamage(Virtue virtue, Virtue enemy){
 		double Damage = BaseDamage;
 		if(virtue.Affinities[Affinity].equals("Str")){
 			Damage *= 1.2;
+		}
+		else if(virtue.Affinities[Affinity].equals("Nul")){
+			Damage *= 1.5;
 		}
 		if(enemy.Affinities[Affinity].equals("Wk")){
 			Damage *= 2;
 		}
 		else if(enemy.Affinities[Affinity].equals("Wk")){
 			Damage /= 2;
+		}
+		else if(enemy.Affinities[Affinity].equals("Nul")){
+			Damage = 0;
 		}
 		return Damage;
 	}
