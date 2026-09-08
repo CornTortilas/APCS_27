@@ -2,37 +2,38 @@
  *	Author:  
  *  Date: 
 */
-
 package pkg;
+
 import java.util.*;
 
 
-/*public class Virtue {
-	String Name;
-	//String[] Affinities;
-	String[] Moves;
-	int Level;
-	int Id;
+public class Move{
+	public double BaseDamage;
+	public String Name;
+	public int Affinity;
+	//int status;
+	//double Accuracy
 
-	public Virtue(String Name, String[] Affinities, String[] Moves, int level, int id) {
+	public Move(double BaseDamage, String Name, int Affinity){
+		this.BaseDamage = BaseDamage;
 		this.Name = Name;
-		//this.Affinities = Affinities;
-		this.Moves = Moves;
-		this.level = level;
-		this.id = id;
+		this.Affinity = Affinity;
+		//this.status = status;
+		//this.Accuracy = Accuracy;
 	}
 
-}*/
-
-public class Move{
-	double damage;
-	int id;
-	//String status;
-
-	public Move(double damage, int id){
-		this.damage = damage;
-		this.id = id;
-		//this.status = status;
+	public double FindDamage(Virtue virtue, Enemy enemy){
+		double Damage = BaseDamage;
+		if(virtue.Affinities[Affinity].equals("Str")){
+			Damage *= 1.2;
+		}
+		if(enemy.Affinities[Affinity].equals("Wk")){
+			Damage *= 2;
+		}
+		else if(enemy.Affinities[Affinity].equals("Wk")){
+			Damage /= 2;
+		}
+		return Damage;
 	}
 
 }

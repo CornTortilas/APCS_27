@@ -6,7 +6,7 @@
 class starter {
 	public static void main(String args[]) {
 
-		String food = new String    ("burritos");
+		String food = new String("burritos");
 		String drink = new String("soda");
 		System.out.println("I love " + food + " and " + drink + "!");
 

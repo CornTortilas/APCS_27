@@ -1,18 +1,33 @@
-public class Enemy{
-	Move[] Moves;
-	//String[] Affinities;
-	int id;
 
-	public Enemy(Move[] Moves, String[] Affinities, int id){
+package pkg;
+import java.util.*;
+
+public class Enemy{
+	public Move[] Moves;
+	public String Name;
+	public double Health;
+	public String[] Affinities;
+
+	public Enemy(Move[] Moves,String Name, double Health,String[] Affinities){
 		this.Moves = Moves;
-		//this.Affinities = Affinities;
-		this.id = id;
+		this.Name = Name;
+		this.Health = Health;
+		this.Affinities = Affinities;
 	}
 
-    public void GenerateEnemy(){
-        for(Move thing : this.Moves){
-            thing = new Move(1.0,1);
-        }
-        this.id = 1; 
-    }
+	public void HitByMove(Move move, Virtue virtue){
+		if(Health == 0){
+			System.out.println(Name + " is already dead");
+			return;
+		}
+		Health -= move.FindDamage(virtue,this);
+		if(Health <= 0){
+			Health = 0;
+		}
+		System.out.println(Name + " was hit by " + move.Name + " and took " + move.FindDamage(virtue,this) + " Damage");
+		if(Health == 0){
+			System.out.println(Name + " died");
+		}
+	}
+
 }
