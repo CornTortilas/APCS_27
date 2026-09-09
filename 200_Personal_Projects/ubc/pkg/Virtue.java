@@ -34,16 +34,19 @@ public class Virtue {
 
 	public void HitByMove(Move move, Virtue virtue){
 		if(Health == 0){
-			System.out.println(Name + " is already dead");
+			System.out.println(Name + " is already dead!");
+			System.out.println();
 			return;
 		}
 		Health -= move.FindDamage(virtue,this);
 		if(Health <= 0){
 			Health = 0;
 		}
-		System.out.println(Name + " was hit by " + move.Name + " and took " + move.FindDamage(virtue,this) + " Damage");
+		move.FindDamageEffects(virtue,this);
+		System.out.println(Name + " took " + move.FindDamage(virtue,this) + " Damage");
 		if(Health == 0){
-			System.out.println(Name + " died");
+			System.out.println(Name + " died!");
+		System.out.println();
 		}
 	}
 }

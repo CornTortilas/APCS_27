@@ -2,9 +2,6 @@
  *	Author:  
  *  Date: 
 */
-
-import java.text.AttributedCharacterIterator.Attribute;
-
 import pkg.*;
 
 
@@ -22,10 +19,10 @@ class Main {
 		Virtue[] VirtueList = new Virtue[2];
 		VirtueList[0] = new Virtue("Jack o'Lantern",MoveList,1.0,AffinityList[0]);
 		VirtueList[1] = new Virtue("Jack Frost",MoveList,1.0,AffinityList[1]);
-		Virtue e = VirtueList[0];
-		Virtue v = VirtueList[1];
-		v.AttackEnemy(v.Moves[1], e);
-		v.AttackEnemy(v.Moves[1], e);
-		//TODO: Add choosing from multiple moves with a menu, then multiple enemies
+		Virtue enemy = VirtueList[0];
+		Virtue virtue = VirtueList[1];
+		virtue.AttackEnemy(virtue.Moves[1], enemy);
+		virtue.AttackEnemy(virtue.Moves[1], enemy);
+		//Add choosing from multiple moves with a menu, then multiple enemies
 	}
 }
