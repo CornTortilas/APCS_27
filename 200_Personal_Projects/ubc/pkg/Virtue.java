@@ -2,6 +2,8 @@ package pkg;
 
 import java.util.*;
 
+import javax.swing.plaf.basic.BasicScrollPaneUI.ViewportChangeHandler;
+
 public class Virtue {
 	public String Name;
 	public Move[] Moves;
@@ -18,6 +20,27 @@ public class Virtue {
         this.Affinities = Affinities;
 	}
 
+	public int ChooseVirtue(Virtue[] Options){
+		int choice = 0;
+		int i = 1;
+		Scanner input = new Scanner(System.in);
+		for(Virtue Option : Options){
+			System.out.println(i + ". " + Option.Name);
+			i++;
+		}
+		choice = input.nextInt();
+		input.nextLine();
+		input.close();
+		return choice-1;
+	}
+	public Virtue TargetVirtue(Move move, Virtue[] Virtues, Virtue[] Enemies){
+		if(move.BaseDamage == 0.0){
+			return Virtues[ChooseVirtue(Virtues)];
+		}
+		else{
+			return Enemies[ChooseVirtue(Enemies)];
+		}
+	}
 	public void AttackEnemy(Move move, Virtue enemy){
 		System.out.println(Name + " attacked " + enemy.Name + " with " + move.Name);
 		enemy.HitByMove(move,this);	
