@@ -30,7 +30,6 @@ public class Virtue {
 		}
 		choice = input.nextInt();
 		input.nextLine();
-		input.close();
 		return choice-1;
 	}
 	public Virtue TargetVirtue(Move move, Virtue[] Virtues, Virtue[] Enemies){

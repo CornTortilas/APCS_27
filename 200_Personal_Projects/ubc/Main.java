@@ -36,6 +36,28 @@ class Main {
 		Virtue chosenVirtue = virtue.TargetVirtue(chosenMove,Virtues,Enemies);
 		virtue.AttackEnemy(chosenMove, chosenVirtue);
 	}
+	public static void EnemyAttackProcess(Virtue enemy, Virtue[] Virtues, Virtue[] Enemies){
+		if(enemy.Health == 0){
+			return;
+		}
+		double MostDamage = 0;
+		int whichMove = 0;
+		int whichTarget = 0;
+		for(int i = 0; i < enemy.Moves.length; i++){
+			for(int j = 0; j < Virtues.length; j++){
+				System.out.println("i: " + i);
+				System.out.println("j: " + j);
+				if(enemy.Moves[i].FindDamage(enemy, Virtues[j]) > MostDamage){
+					if(MostDamage == 0 || (int)Math.random()*100 <= 75){
+						MostDamage = enemy.Moves[i].FindDamage(enemy, Virtues[j]);
+						whichMove = i;
+						whichTarget = j;
+					}
+				}
+			}
+		}
+		enemy.AttackEnemy(enemy.Moves[whichMove], Virtues[whichTarget]);
+	}
 
 	public static void main(String args[]) {
 		String[][] AffinityList = {
@@ -50,14 +72,14 @@ class Main {
 		Virtue[] VirtueList = new Virtue[2];
 		VirtueList[0] = new Virtue("Jack o'Lantern",MoveList,1.0,AffinityList[0]);
 		VirtueList[1] = new Virtue("Jack Frost",MoveList,1.0,AffinityList[1]);
-		Virtue[] EnemyList = new Virtue[2]; 
+		Virtue[] EnemyList = new Virtue[1]; 
 		Virtue enemy = VirtueList[0];
 		EnemyList[0] = enemy;
 		Virtue[] PlayerVirtueList = new Virtue[1];
 		Virtue virtue = VirtueList[1];
 		PlayerVirtueList[0] = virtue;
 		AttackProcess(virtue, PlayerVirtueList, EnemyList);
-
+		EnemyAttackProcess(enemy, PlayerVirtueList, EnemyList);
 		//TODO: add enemy ai
 	}
 }
