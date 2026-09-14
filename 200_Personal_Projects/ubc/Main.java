@@ -32,21 +32,35 @@ class Main {
 		return choice-1;
 	}
 	public static void AttackProcess(Virtue virtue, Virtue[] Virtues, Virtue[] Enemies){
+		if(virtue.Health == 0){
+			return;
+		}
+        else{
+            System.out.println("\nYour Turn!\n");
+        }
 		Move chosenMove = virtue.Moves[ChooseMove(virtue.Moves)];
 		Virtue chosenVirtue = virtue.TargetVirtue(chosenMove,Virtues,Enemies);
 		virtue.AttackEnemy(chosenMove, chosenVirtue);
+        virtue.EndTurnEffects();
+		virtue.PrintHealth();
 	}
 	public static void EnemyAttackProcess(Virtue enemy, Virtue[] Virtues, Virtue[] Enemies){
 		if(enemy.Health == 0){
 			return;
 		}
+        else{
+            System.out.println("\nEnemy Turn!\n");
+        }
+        if(enemy.status == 1){
+            enemy.EndTurnEffects();
+            System.out.println(enemy.Name + " is stunned");
+            return;
+        }
 		double MostDamage = 0;
 		int whichMove = 0;
 		int whichTarget = 0;
 		for(int i = 0; i < enemy.Moves.length; i++){
 			for(int j = 0; j < Virtues.length; j++){
-				System.out.println("i: " + i);
-				System.out.println("j: " + j);
 				if(enemy.Moves[i].FindDamage(enemy, Virtues[j]) > MostDamage){
 					if(MostDamage == 0 || (int)Math.random()*100 <= 75){
 						MostDamage = enemy.Moves[i].FindDamage(enemy, Virtues[j]);
@@ -57,6 +71,8 @@ class Main {
 			}
 		}
 		enemy.AttackEnemy(enemy.Moves[whichMove], Virtues[whichTarget]);
+        enemy.EndTurnEffects();
+		enemy.PrintHealth();
 	}
 
 	public static void main(String args[]) {
@@ -65,21 +81,27 @@ class Main {
 				{"","Wk","Str","Wk","","","","",""},
 				{"","","Wk","Nul","","Str","","",""}
 		};
-		Move[] MoveList = new Move[2];
+        String[] StatusList = {"","Stun","Rage","Charm","Confuse","Regen"};
+		Move[] MoveList = new Move[3];
 		//Strike0,Pierce1,Fire2,Ice3,Wind4,Elec5,Psy6,Light7,Dark8
-		MoveList[0] = new Move(1.0,"Bash",0,0);
-		MoveList[1] = new Move(1.0,"Shoot",1,1);
+		MoveList[0] = new Move(20.0,"Bash",0,0,0);
+		MoveList[1] = new Move(20.0,"Shoot",1,0,0);
+        MoveList[2] = new Move(0.0, "Regen",0,5,2);
 		Virtue[] VirtueList = new Virtue[2];
-		VirtueList[0] = new Virtue("Jack o'Lantern",MoveList,1.0,AffinityList[0]);
-		VirtueList[1] = new Virtue("Jack Frost",MoveList,1.0,AffinityList[1]);
+		VirtueList[0] = new Virtue("Jack o'Lantern",MoveList,100.0,AffinityList[0],StatusList);
+		VirtueList[1] = new Virtue("Jack Frost",MoveList,100.0,AffinityList[1],StatusList);
 		Virtue[] EnemyList = new Virtue[1]; 
 		Virtue enemy = VirtueList[0];
 		EnemyList[0] = enemy;
 		Virtue[] PlayerVirtueList = new Virtue[1];
 		Virtue virtue = VirtueList[1];
 		PlayerVirtueList[0] = virtue;
+        while(virtue.Health > 0.0 && enemy.Health > 0){
 		AttackProcess(virtue, PlayerVirtueList, EnemyList);
 		EnemyAttackProcess(enemy, PlayerVirtueList, EnemyList);
-		//TODO: add enemy ai
+		
+        }
+		//TODO: add statuses to moves and virtues
 	}
 }
+    

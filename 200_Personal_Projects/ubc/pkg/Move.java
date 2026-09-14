@@ -13,13 +13,15 @@ public class Move{
 	public int Affinity;
 	private String[] AffinityList = {"Strike","Pierce","Fire","Ice","Wind","Elec","Psy","Light","Dark"};
 	int status;
+    int stack;
 	//double Accuracy
 
-	public Move(double BaseDamage, String Name, int Affinity, int status){
+	public Move(double BaseDamage, String Name, int Affinity, int status, int stack){
 		this.BaseDamage = BaseDamage;
 		this.Name = Name;
 		this.Affinity = Affinity;
 		this.status = status;
+        this.stack = stack;
 		//this.Accuracy = Accuracy;
 	}
 
@@ -33,6 +35,8 @@ public class Move{
 		}
 		if(enemy.Affinities[Affinity].equals("Wk")){
 			Damage *= 2;
+            enemy.status = 1;
+            enemy.stack = 1;
 		}
 		else if(enemy.Affinities[Affinity].equals("Str")){
 			Damage /= 2;
