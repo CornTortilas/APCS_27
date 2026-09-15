@@ -38,7 +38,24 @@ class Main {
         else{
             System.out.println("\nYour Turn!\n");
         }
-		Move chosenMove = virtue.Moves[ChooseMove(virtue.Moves)];
+		if(virtue.status == 1){
+			System.out.println(virtue.Name + " is stunned");
+			return;
+		}
+		Move chosenMove = null;
+		if(virtue.status == 2){
+			boolean UsableMove = false;
+			while(!UsableMove){
+				chosenMove = virtue.Moves[ChooseMove(virtue.Moves)];
+				if(chosenMove.BaseDamage > 0.0){
+					UsableMove = true;
+				}
+			}
+		}
+		else{
+			chosenMove = virtue.Moves[ChooseMove(virtue.Moves)];
+		}
+		
 		Virtue chosenVirtue = virtue.TargetVirtue(chosenMove,Virtues,Enemies);
 		virtue.AttackEnemy(chosenMove, chosenVirtue);
         virtue.EndTurnEffects();
@@ -94,13 +111,18 @@ class Main {
 		Virtue enemy = VirtueList[0];
 		EnemyList[0] = enemy;
 		Virtue[] PlayerVirtueList = new Virtue[1];
-		Virtue virtue = VirtueList[1];
+		Virtue virtue = new Virtue(VirtueList[0]);
 		PlayerVirtueList[0] = virtue;
-        while(virtue.Health > 0.0 && enemy.Health > 0){
-		AttackProcess(virtue, PlayerVirtueList, EnemyList);
-		EnemyAttackProcess(enemy, PlayerVirtueList, EnemyList);
+        while(virtue.Health > 0.0 && enemy.Health > 0.0){
+		AttackProcess(PlayerVirtueList[0], PlayerVirtueList, EnemyList);
+		EnemyAttackProcess(EnemyList[0], PlayerVirtueList, EnemyList);
 		
         }
+		if(virtue.Health == 0.0){
+			System.out.println();
+			System.out.println("YOU LOSE");
+			System.out.println();
+		}
 		//TODO: add statuses to moves and virtues
 	}
 }

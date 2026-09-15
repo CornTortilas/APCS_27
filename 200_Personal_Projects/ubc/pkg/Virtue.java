@@ -23,6 +23,17 @@ public class Virtue {
         this.stack = 0;
 	}
 
+	public Virtue(Virtue source){
+		this.Name = source.Name;
+	 	this.Moves = source.Moves;
+		this.MaxHealth = source.MaxHealth;
+		this.Health = source.MaxHealth;
+        this.Affinities = source.Affinities;
+		this.status = 0;
+		this.StatusList = source.StatusList;
+        this.stack = 0;
+	}
+
 	public int ChooseVirtue(Virtue[] Options){
 		int choice = 0;
 		int i = 1;
@@ -48,7 +59,7 @@ public class Virtue {
 		    System.out.println(Name + " attacked " + enemy.Name + " with " + move.Name);
         }
         else{
-            System.out.println(Name + " used " + move.Name + " on " + enemy.Name);
+            System.out.println(Name + " used " + move.Name + " on " + ((enemy.equals(this))? "self":enemy.Name));
         }
 		enemy.HitByMove(move,this);	
 	}
@@ -63,7 +74,7 @@ public class Virtue {
 	}
 
 	public void PrintStatus(){
-		System.out.println(Name + "'s Status: " + StatusList[status]);
+		System.out.println("Status: " + StatusList[status]);
 	}
 
 	public void HitByMove(Move move, Virtue virtue){
