@@ -89,6 +89,7 @@ class Main {
 		}
 		enemy.AttackEnemy(enemy.Moves[whichMove], Virtues[whichTarget]);
         enemy.EndTurnEffects();
+		System.out.print("Health: ");
 		enemy.PrintHealth();
 	}
 
@@ -110,13 +111,20 @@ class Main {
 		Virtue[] EnemyList = new Virtue[1]; 
 		Virtue enemy = VirtueList[0];
 		EnemyList[0] = enemy;
-		Virtue[] PlayerVirtueList = new Virtue[1];
+		Virtue[] PlayerVirtueList = new Virtue[3];
 		Virtue virtue = new Virtue(VirtueList[0]);
+		Virtue virtue1 = new Virtue(VirtueList[1]);
+		Virtue virtue2 = new Virtue(VirtueList[0]);
 		PlayerVirtueList[0] = virtue;
+		PlayerVirtueList[1] = virtue1;
+		PlayerVirtueList[2] = virtue2;
         while(virtue.Health > 0.0 && enemy.Health > 0.0){
-		AttackProcess(PlayerVirtueList[0], PlayerVirtueList, EnemyList);
-		EnemyAttackProcess(EnemyList[0], PlayerVirtueList, EnemyList);
-		
+			for(int i = 0; i < PlayerVirtueList.length; i++){
+				AttackProcess(PlayerVirtueList[i], PlayerVirtueList, EnemyList);
+			}
+			for(int i = 0; i < EnemyList.length; i++){
+				EnemyAttackProcess(EnemyList[i], PlayerVirtueList, EnemyList);
+			}
         }
 		if(virtue.Health == 0.0){
 			System.out.println();

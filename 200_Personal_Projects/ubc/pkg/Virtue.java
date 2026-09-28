@@ -39,7 +39,8 @@ public class Virtue {
 		int i = 1;
 		Scanner input = new Scanner(System.in);
 		for(Virtue Option : Options){
-			System.out.println(i + ". " + Option.Name);
+			System.out.print(i + ". " + Option.Name + " Health: ");
+			Option.PrintHealth();
 			i++;
 		}
 		choice = input.nextInt();
@@ -70,11 +71,11 @@ public class Virtue {
 	}
 
 	public void PrintHealth(){
-		System.out.println( "Health: " + Health + "/" + MaxHealth);
+		System.out.println(Health + "/" + MaxHealth);
 	}
 
 	public void PrintStatus(){
-		System.out.println("Status: " + StatusList[status]);
+		System.out.println(StatusList[status]);
 	}
 
 	public void HitByMove(Move move, Virtue virtue){
