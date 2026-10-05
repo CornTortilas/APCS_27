@@ -10,19 +10,3 @@ class starter {
 		System.out.print("I love to learn coding remotely."); 
 	}
 }
-
-
-
-
-/*
-    ________________
-   /             /  \
-  /             /    \
- /             /      \
-/_____________/________\
-
-
-
-
-
-*/
