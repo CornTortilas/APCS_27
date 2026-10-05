@@ -1,0 +1,1 @@
+Create a program that tells the user what to wear based on the temperature outside
