@@ -33,6 +33,7 @@ class starter {
 				while(wager >  money){
 					System.out.println("What will you wager?");
 					wager = Input.nextInt();
+					Input.nextLine();
 					if(wager > money){
 						System.out.println("Wager  too high");
 					}
@@ -55,9 +56,13 @@ class starter {
             	} else {
 					money -= wager;
                		System.out.println("Didn't win this time, better luck next time!");
-               		System.out.println("You now have $" + money + ".");
-               		
+               		System.out.println("You now have $" + money + ".");               		
 				}
+				wager = money+1;
+			}
+			else{
+				System.out.println("See you again soon!");
+				break;
 			}
 		}
 	}
