@@ -13,8 +13,39 @@ class starter {
 	static ArrayList<String> arr = new ArrayList<String>();
 
 	public static void main(String args[]) throws InterruptedException {
-		// Write your code here!
+		Scanner input = new Scanner(System.in);
+		populateArrayList();
+		System.out.print("Choose a game mode 1-3!\n1. Get a random sentence out of 100\n2. Choose a sentence to type out\n3.QUIT");
+		int choice = input.nextInt();
+		
+		if(choice == 1){
+			System.out.println("Alright!");
+			String given = getSentence();
+			System.out.println("This is your sentence: " + given);
+			System.out.println("Your countdown is starting now!");
+			countdown();
+			System.out.println("Don't forget, only hit enter once you've finished the whole sentence");
+			input.nextLine();
+			String typed = input.nextLine();
+			int errors = compareSentences(given, typed);
+			System.out.println("You had " + errors + " errors");
+			int letterDiff = lettersInSentence(typed)-lettersInSentence(given);
+			if(letterDiff != 0){
+				System.out.print("You had " + letterDiff);
+				(letterDiff>0) ? System.out.print("more"):System.out.print("less");
+			}
+			else{
 
+			}
+
+
+		}
+		else if(choice == 2){
+			System.out.println("Alright!");
+		}
+		else{
+			System.out.println("Looks like you wanted to quit. See ya!");
+		}
 		
 	}
 
