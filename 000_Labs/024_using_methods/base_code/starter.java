@@ -15,33 +15,90 @@ class starter {
 	public static void main(String args[]) throws InterruptedException {
 		Scanner input = new Scanner(System.in);
 		populateArrayList();
-		System.out.print("Choose a game mode 1-3!\n1. Get a random sentence out of 100\n2. Choose a sentence to type out\n3.QUIT");
-		int choice = input.nextInt();
+		System.out.println("Choose a game mode 1-3!\n1. Get a random sentence out of 100\n2. Choose a sentence to type out\n3.QUIT");
+		int choice = input.nextInt();input.nextLine();
 		
 		if(choice == 1){
 			System.out.println("Alright!");
 			String given = getSentence();
-			System.out.println("This is your sentence: " + given);
+			System.out.println("Don't forget, only hit enter once you've finished the whole sentence");
+			System.out.println("The time is: " + getTime());
 			System.out.println("Your countdown is starting now!");
 			countdown();
-			System.out.println("Don't forget, only hit enter once you've finished the whole sentence");
-			input.nextLine();
+			System.out.println("Your sentence is: " + given);
+			startTimer();
 			String typed = input.nextLine();
+			double elapsed = endTimer();
 			int errors = compareSentences(given, typed);
-			System.out.println("You had " + errors + " errors");
+			System.out.print("You had " + errors + " wrong");
+			System.out.println(((errors==1) ? " letter":" letters"));
 			int letterDiff = lettersInSentence(typed)-lettersInSentence(given);
 			if(letterDiff != 0){
-				System.out.print("You had " + letterDiff);
-				(letterDiff>0) ? System.out.print("more"):System.out.print("less");
+			System.out.print("You had " + Math.abs(letterDiff));
+			System.out.print(((letterDiff>0) ? " more":" less"));
+			System.out.print(((letterDiff==1) ? " letter":" letters"));
+			System.out.println(" than the given sentence");
 			}
 			else{
-
+				System.out.println("You had the right number of letters!");
 			}
+
+			int wordDiff = wordsInSentence(typed) - wordsInSentence(given);
+			if(wordDiff != 0){
+				System.out.print("You had " + Math.abs(wordDiff));
+				System.out.print(((wordDiff>0) ? " more":" less"));
+				System.out.print(((wordDiff==1) ? " word":" words"));
+				System.out.println(" than the given sentence");
+			}
+			else{
+				System.out.println("You had the right number of words!");
+			}
+			System.out.println("You took " + elapsed + " seconds and milliseconds");
+			System.out.println("You had " + ((elapsed*60)/wordsInSentence(typed)) + " words per minute");
+			System.out.println("You had " + ((elapsed*60)/lettersInSentence(typed)) + " letters per minute");
 
 
 		}
 		else if(choice == 2){
 			System.out.println("Alright!");
+			System.out.println("Which one?");
+			String given = getSentence(input.nextInt());input.nextLine();
+			System.out.println("Don't forget, only hit enter once you've finished the whole sentence");
+			System.out.println("The time is: " + getTime());
+			System.out.println("Your countdown is starting now!");
+			countdown();
+			System.out.println("Your sentence is: " + given);
+			startTimer();
+			String typed = input.nextLine();
+			double elapsed = endTimer();
+			int errors = compareSentences(given, typed);
+			System.out.print("You had " + errors + " wrong");
+			System.out.println(((errors==1) ? " letter":" letters"));
+			int letterDiff = lettersInSentence(typed)-lettersInSentence(given);
+			if(letterDiff != 0){
+				System.out.print("You had " + Math.abs(letterDiff));
+				System.out.print(((letterDiff>0) ? " more":" less"));
+				System.out.print(((letterDiff==1) ? " letter":" letters"));
+				System.out.println(" than the given sentence");
+			}
+			else{
+				System.out.println("You had the right number of letters!");
+			}
+
+			int wordDiff = wordsInSentence(typed) - wordsInSentence(given);
+			if(wordDiff != 0){
+				System.out.print("You had " + Math.abs(wordDiff));
+				System.out.print(((wordDiff>0) ? " more":" less"));
+				System.out.print(((wordDiff==1) ? " word":" words"));
+				System.out.println(" than the given sentence");
+			}
+			else{
+				System.out.println("You had the right number of words!");
+			}
+			System.out.println("You took " + elapsed + " seconds and milliseconds");
+			System.out.println("You had " + ((elapsed*60)/wordsInSentence(typed)) + " words per minute");
+			System.out.println("You had " + ((elapsed*60)/lettersInSentence(typed)) + " letters per minute");
+
 		}
 		else{
 			System.out.println("Looks like you wanted to quit. See ya!");
