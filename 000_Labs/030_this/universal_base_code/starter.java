@@ -24,7 +24,34 @@ class starter {
 
 	public static void main(String args[]) {
 		// Your code goes below here
-		PooleDwarf test = new PooleDwarf();
-		
+		PooleDwarf Guido_Mista = new PooleDwarf(randName(),((int)(Math.random()*20+30)));
+		PooleDwarf Number1 = new PooleDwarf(randName(),((int)(Math.random()*20+30)));
+		PooleDwarf Number2 = new PooleDwarf(randName(),((int)(Math.random()*20+30)));
+		PooleDwarf Number3 = new PooleDwarf(randName(),((int)(Math.random()*20+30)));
+		PooleDwarf Number5 = new PooleDwarf(randName(),((int)(Math.random()*20+30)));
+		PooleDwarf Number6 = new PooleDwarf(randName(),((int)(Math.random()*20+30)));
+		PooleDwarf Number7 = new PooleDwarf(randName(),((int)(Math.random()*20+30)));
+		int count = 0;
+		if(Guido_Mista.getName().equals(Number1.getName())){
+			count++;
+		}
+		if(Guido_Mista.getName().equals(Number2.getName())){
+			count++;
+		}
+		if(Guido_Mista.getName().equals(Number3.getName())){
+			count++;
+		}
+		if(Guido_Mista.getName().equals(Number5.getName())){
+			count++;
+		}
+		if(Guido_Mista.getName().equals(Number6.getName())){
+			count++;
+		}
+		if(Guido_Mista.getName().equals(Number7.getName())){
+			count++;
+		}
+		System.out.print(count);
+		System.out.print(" " + ((count == 0 || count > 1)? "dwarves":"dwarf"));
+		System.out.println(" had the same name as " + Guido_Mista.getName() + ",the first dwarf");
 	}
 }
